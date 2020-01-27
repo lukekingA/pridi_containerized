@@ -1,0 +1,29 @@
+version: '3'
+networks: 
+  appnetwork:
+services:
+  api:
+    build:
+      context: .
+      dockerfile: api.Dockerfile
+    ports:
+      - "8080:80"
+    volumes: 
+      - ../html/:/var/www/html/
+      - ../vendor/:/var/www/vendor
+  app:
+    image: nginx:1.17.7
+    ports: 
+      - "80:80"
+    volumes: 
+      - ../pridiApp/dist/:/usr/share/nginx/html/
+  db:
+    image: mysql:5.7.29
+    environment: 
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=pridi
+    ports: 
+      - "3306:3306"
+    volumes: 
+      - ./dbDump/:/dbDump/
+    command: --default-authentication-plugin=mysql_native_password
