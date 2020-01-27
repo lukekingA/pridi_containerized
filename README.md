@@ -6,7 +6,7 @@
   * html
   * pridiApp
   * .gitignore
-  * _etc_
+  * _etc..._
 
 3. cd into pridiApp directory and run `npm i', `bower install`, and `grunt build`
 
